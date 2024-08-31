@@ -1,0 +1,23 @@
+1) Firstly, we need to install the drivers by copying them into the pom.xml file under dependencies.
+
+2) When implementing a SQL Query in JDBC we need a connection, we have to make the 
+helper class with the credentials of SQL root account, and also a getConnection method which we can call
+by using a try catch block =  try (Connection conn = MySQLConnection.getConnection()).
+
+3) Then we need to use a PreparedStatement, in case of simple queries with no parameters we use Statement,
+not PreparedStatement which is used when you have parameters.
+
+4) Now we have to execute the query, according to which type of query we are using we have to use different
+execution methods. For example, for SELECT queries we use executeQuery() which returns a ResultSet that you 
+later can iterate over to print out the results of the executed query. 
+
+However, for INSERT, UPDATE & DELETE queries that consist of modifying data, we use the executeUpdate() 
+method since we want to update, modify by adding or removing data, or deleting data, not only print out existing 
+data. The executeUpdate() method returns an "int" that indicates how many rows were affected by the query. If we
+have updated 3 rows, the int will return "3".
+
+5) The last step is that you have to close the resources so that we have no resource leaks which are easily occuring
+in bigger projects with huge databases and plenty commands running simultaneously. How we close the resources is 
+optional, though the most modern and simple way is using the try with resources method, most concise and easy way
+to close resources.
+
